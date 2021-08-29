@@ -468,7 +468,7 @@ class _HomeState extends State<Home> {
                                                   Radius.circular(5 * width)),
                                               child: Image.network(
                                                 index == 0
-                                                    ? 'https://i.pinimg.com/236x/5d/cb/47/5dcb470a5e9b5d4d2d67752289f5fd41.jpg'
+                                                    ? 'https://i.pinimg.com/236x/9a/28/05/9a2805a12a9a775dd4fff5a4630653f8.jpg'
                                                     : index == 1
                                                         ? 'https://i.pinimg.com/236x/dc/d2/2a/dcd22a8779ae0436c5986b0f0bf7199d.jpg'
                                                         : index == 2
