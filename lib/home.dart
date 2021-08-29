@@ -44,50 +44,48 @@ class _HomeState extends State<Home> {
     ];
     List<int> items = [54, 107, 204, 34, 67];
 
-    Widget _buildItems(IconData icon, String item) {
-      return Container(
-          width: 300 * width,
-          height: 50 * height,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+    _buildItems(IconData icon, String item) {
+      return ListTile(
+          trailing: Icon(EvaIcons.arrowForwardOutline),
+          leading: Icon(icon, color: Colors.black54),
+          title: Text(item,
+              style: GoogleFonts.acme(
+                  fontSize: 16 * width,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black54)));
+    }
+
+    _builUserDetails() {
+      return ListTile(
+          title: Row(
+        children: [
+          CircleAvatar(backgroundImage: NetworkImage(userholder.image)),
+          SizedBox(width: 20),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  width: 60 * width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(icon,
-                              size: 20 * width, color: Colors.black54)),
-                    ],
-                  )),
-              Container(
-                width: 240 * width,
-                padding: EdgeInsets.only(left: 20 * width),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(item,
-                        style: GoogleFonts.acme(
-                            fontSize: 16 * width,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black54)),
-                  ],
-                ),
-              )
+              Text(userholder.name,
+                  style: GoogleFonts.acme(
+                      fontSize: 18 * width,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black)),
+              Text(userholder.email,
+                  style: GoogleFonts.acme(
+                      fontSize: 16 * width,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black54))
             ],
-          ));
+          ),
+        ],
+      ));
     }
 
     return Scaffold(
         key: scaffoldKey,
         drawer: Drawer(
           child: Container(
-            width: 300 * width,
+            width: 330 * width,
             height: size.height,
             child: Column(
               children: [
@@ -105,45 +103,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
                 SizedBox(height: 30 * height),
-                Container(
-                  width: 300 * width,
-                  height: 100 * height,
-                  padding: EdgeInsets.only(
-                      left: 20 * width, bottom: 20 * height, top: 20 * height),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                          width: 50 * width,
-                          height: 50 * height,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(userholder.image)))),
-                      Container(
-                        width: 200 * width,
-                        height: 50 * height,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(userholder.name,
-                                style: GoogleFonts.acme(
-                                    fontSize: 18 * width,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black)),
-                            Text(userholder.email,
-                                style: GoogleFonts.acme(
-                                    fontSize: 16 * width,
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black54))
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                _builUserDetails(),
                 SizedBox(height: 50 * height),
                 _buildItems(EvaIcons.home, 'Home'),
                 _buildItems(EvaIcons.archive, 'New Collections'),
